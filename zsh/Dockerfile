@@ -17,20 +17,14 @@ RUN apt-get update \
      && useradd -d /home/user -s /bin/zsh user \
      && chown user:user -R /home/user \
      && su - user -c "sh <(curl https://j.mp/spf13-vim3 -L)" \
-     && echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
-
-RUN cd /tmp \
-    && wget "https://download.docker.com/linux/static/stable/x86_64/docker-17.12.1-ce.tgz" \
-    && tar -xzvf docker-* \
-    && cd docker \
-    && mv docker /usr/local/bin \
-    && usermod -a user -G users \
-    && rm -rf /tmp/*
-
-RUN mkdir /home/user/projects \
-    && chown user:user -R /home/user/projects \
-    && touch /var/run/docker.sock \
-    && chown root:users /var/run/docker.sock
+     && echo "user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+     && cd /tmp \
+     && wget "https://download.docker.com/linux/static/stable/x86_64/docker-17.12.1-ce.tgz" \
+     && tar -xzvf docker-* \
+     && cd docker \
+     && mv docker /usr/local/bin \
+     && usermod -a user -G users \
+     && rm -rf /tmp/*
 
 WORKDIR /home/user/projects
 
