@@ -25,22 +25,18 @@ pipeline {
         }
         stage("build"){
             steps {
-                sh "docker image build --no-cache -t softtekcoe/jenkins jenkins"
-                sh "docker image tag softtekcoe/jenkins softtekcoe/jenkins:${currentBuild.displayName}"
-                sh "docker image build --no-cache -t softtekcoe/jenkins-agent jenkins-agent"
-                sh "docker image tag softtekcoe/jenkins-agent softtekcoe/jenkins-agent:${currentBuild.displayName}"
+                sh "docker image build --no-cache -t softtekcoe/zsh zsh"
+                sh "docker image tag softtekcoe/zsh softtekcoe/zsh:${currentBuild.displayName}"
             }
         }
         stage("publish"){
             steps {
-                sh "docker image push softtekcoe/jenkins:${currentBuild.displayName}"
-                sh "docker image push softtekcoe/jenkins-agent:${currentBuild.displayName}"
+                sh "docker image push softtekcoe/zsh:${currentBuild.displayName}"
             }
         }
         stage("publish latest"){
             steps {
-                sh "docker image push softtekcoe/jenkins"
-                sh "docker image push softtekcoe/jenkins-agent"
+                sh "docker image push softtekcoe/zsh"
             }
         }
     }

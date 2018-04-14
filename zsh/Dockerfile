@@ -27,6 +27,11 @@ RUN cd /tmp \
     && usermod -a user -G users \
     && rm -rf /tmp/*
 
+RUN mkdir /home/user/projects \
+    && chown user:user -R /home/user/projects \
+    && touch /var/run/docker.sock \
+    && chown root:users /var/run/docker.sock
+
 WORKDIR /home/user/projects
 
 USER user
