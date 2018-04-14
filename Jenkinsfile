@@ -32,6 +32,13 @@ pipeline {
         stage("publish"){
             steps {
                 sh "docker image push softtekcoe/zsh:${currentBuild.displayName}"
+            }
+        }
+        stage("publish latest"){
+            when{
+                branch "master"
+            }
+            steps {
                 sh "docker image push softtekcoe/zsh"
             }
         }
