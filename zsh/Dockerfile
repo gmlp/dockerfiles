@@ -5,6 +5,8 @@ LABEL Maintainer="gmlp.24a@gmail.com"
 RUN apt-get update \
  && apt-get install -y \
      tmux \
+     unzip \
+     python3-pip \
      git \
      curl \
      wget \
@@ -24,6 +26,13 @@ RUN apt-get update \
      && cd docker \
      && mv docker /usr/local/bin \
      && usermod -a user -G users \
+     && wget "https://releases.hashicorp.com/terraform/0.11.7/terraform_0.11.7_linux_amd64.zip?_ga=2.50275106.520816620.1523896114-1675264641.1505340345" -O terraform.zip \
+     && wget "https://releases.hashicorp.com/packer/1.2.2/packer_1.2.2_linux_amd64.zip" \
+     && unzip terraform.zip \
+     && unzip packer_*.zip \
+     && mv packer /usr/local/bin \
+     && mv terraform /usr/local/bin \
+     && pip3 install awscli \
      && rm -rf /tmp/*
 
 WORKDIR /home/user/projects
