@@ -4,6 +4,9 @@ pipeline {
     agent {
         label "test"
     }
+    environment{
+        PROJECT="tools"
+    }
     options {
         disableConcurrentBuilds()
     }
@@ -25,18 +28,18 @@ pipeline {
         }
         stage("build"){
             steps {
-                sh "docker image build --no-cache -t softtekcoe/zsh zsh"
-                sh "docker image tag softtekcoe/zsh softtekcoe/zsh:${currentBuild.displayName}"
+                sh "docker image build --no-cache -t softtekcoe/${env.PROJECT} ${env.PROJECT}"
+                sh "docker image tag softtekcoe/${env.PROJECT} softtekcoe/${env.PROJECT}:${currentBuild.displayName}"
             }
         }
         stage("publish"){
             steps {
-                sh "docker image push softtekcoe/zsh:${currentBuild.displayName}"
+                sh "docker image push softtekcoe/${env.PROJECT}:${currentBuild.displayName}"
             }
         }
         stage("publish latest"){
             steps {
-                sh "docker image push softtekcoe/zsh"
+                sh "docker image push softtekcoe/${env.PROJECT}"
             }
         }
     }
