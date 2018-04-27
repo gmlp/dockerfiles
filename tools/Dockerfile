@@ -20,6 +20,7 @@ RUN cd /tmp \
      && apt-get install -y \
         kubectl \
         groff \
+        jq \
      && rm -rf /tmp/*
 
 WORKDIR /home/user/projects
