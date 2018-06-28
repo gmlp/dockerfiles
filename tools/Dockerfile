@@ -30,6 +30,8 @@ RUN cd /tmp \
         kubectl \
         groff \
         jq \
+        iputils-ping \
+        dnsutils \
      && rm -rf /tmp/*
 
 WORKDIR /home/user/projects
