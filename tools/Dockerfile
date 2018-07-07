@@ -33,6 +33,7 @@ RUN cd /tmp \
         jq \
         iputils-ping \
         dnsutils \
+        tree \
      && rm -rf /tmp/*
 
 WORKDIR /home/user/projects
